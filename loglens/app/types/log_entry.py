@@ -4,13 +4,12 @@ from enum import Enum
 from typing import Optional
 
 class LogLevel(str, Enum):
-
     DEBUG = "DEBUG"
     INFO = "INFO"
     WARNING = "WARNING"
     ERROR = "ERROR"
     CRITICAL = "CRITICAL"
-    UNKNOW = "UNKNOW"
+    UNKNOWN = "UNKNOWN"
 
 @dataclass
 class LogEntry:
@@ -18,7 +17,7 @@ class LogEntry:
     raw_line: str                       # linha original
     line_number: int                    # posição do arquivo
     timestamp: Optional[datetime] = None
-    level: LogLevel = LogLevel.UNKNOW
+    level: LogLevel = LogLevel.UNKNOWN
     source: Optional[str] = None
     message: Optional[str]= None
     parsed: bool = False
@@ -28,5 +27,5 @@ class LogEntry:
         return self.level in (LogLevel.ERROR, LogLevel.CRITICAL)            # atalho pra filtrar problema
 
     def __repr__(self) -> str:
-        ts = self.timestamp.isformat() if self.timestamp else "no-timestamp"
+        ts = self.timestamp.isoformat() if self.timestamp else "no-timestamp"
         return f"<LogEntry #{self.line_number} [{self.level}] {ts}>"

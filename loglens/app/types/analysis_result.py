@@ -9,7 +9,7 @@ from app.types.log_entry import LogEntry, LogLevel
 @dataclass
 class TimeRange:
     start: datetime
-    end:   datetime
+    end: datetime
 
     @property
     def duration_seconds(self) -> float:
@@ -51,19 +51,19 @@ class LevelDistribution:
 
 @dataclass
 class AnalysisResult:
-    file_id:   str     
-    file_name: str       
+    file_id: str
+    file_name: str
     analyzed_at: datetime = field(default_factory=datetime.utcnow)
 
-    entries:       list[LogEntry] = field(default_factory=list)
-    total_lines:   int = 0
-    parsed_lines:  int = 0
-    failed_lines:  int = 0
+    entries: list[LogEntry] = field(default_factory=list)
+    total_lines: int = 0
+    parsed_lines: int = 0
+    failed_lines: int = 0
 
     level_distribution: LevelDistribution = field(
         default_factory=LevelDistribution
     )
-    time_range: Optional[TimeRange] = None   # None se nenhum timestamp foi achado
+    time_range: Optional[TimeRange] = None 
     top_sources: list[tuple[str, int]] = field(default_factory=list)
     insights: list[str] = field(default_factory=list)
 
@@ -79,19 +79,19 @@ class AnalysisResult:
 
     def summary(self) -> dict:
         return {
-            "file_id":        self.file_id,
-            "file_name":      self.file_name,
-            "analyzed_at":    self.analyzed_at.isoformat(),
-            "total_lines":    self.total_lines,
-            "parsed_lines":   self.parsed_lines,
-            "parse_rate":     f"{self.parse_success_rate:.1%}",
-            "has_errors":     self.has_errors,
-            "error_rate":     f"{self.level_distribution.error_rate:.1%}",
-            "time_range":     {
-                "start":    self.time_range.start.isoformat(),
-                "end":      self.time_range.end.isoformat(),
+            "file_id": self.file_id,
+            "file_name": self.file_name,
+            "analyzed_at": self.analyzed_at.isoformat(),
+            "total_lines": self.total_lines,
+            "parsed_lines": self.parsed_lines,
+            "parse_rate": f"{self.parse_success_rate:.1%}",
+            "has_errors": self.has_errors,
+            "error_rate": f"{self.level_distribution.error_rate:.1%}",
+            "time_range": {
+                "start": self.time_range.start.isoformat(),
+                "end": self.time_range.end.isoformat(),
                 "duration": self.time_range.duration_human,
             } if self.time_range else None,
-            "top_sources":    self.top_sources[:5],
-            "insights":       self.insights,
+            "top_sources": self.top_sources[:5],
+            "insights": self.insights,
         }

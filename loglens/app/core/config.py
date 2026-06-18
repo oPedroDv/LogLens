@@ -16,7 +16,7 @@ class Settings(BaseSettings):
     database_url: str = "sqlite:///./data/loglens.db"
 
     max_file_size_mb: int = 50
-    allowed_exstensions = tuple[str, ...] = (".log", ".txt")
+    allowed_extensions: tuple[str, ...] = (".log", ".txt")
 
     @property
     def max_file_size_bytes(self) -> int:
@@ -31,5 +31,5 @@ class Settings(BaseSettings):
     )
 
 @lru_cache
-def get_settigns() -> Settings:
+def get_settings() -> Settings:
     return Settings()
