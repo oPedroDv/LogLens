@@ -17,7 +17,6 @@ class TimeRange:
 
     @property
     def duration_human(self) -> str:
-        """Retorna algo legível como '2h 15m 30s'."""
         total = int(self.duration_seconds)
         h, remainder = divmod(total, 3600)
         m, s = divmod(remainder, 60)
@@ -52,8 +51,8 @@ class LevelDistribution:
 
 @dataclass
 class AnalysisResult:
-    file_id:   str       # ID único do arquivo
-    file_name: str       # nome original do arquivo
+    file_id:   str     
+    file_name: str       
     analyzed_at: datetime = field(default_factory=datetime.utcnow)
 
     entries:       list[LogEntry] = field(default_factory=list)
