@@ -15,14 +15,14 @@ TIMESTAMP_PATTERNS: list[tuple[re.Pattern, str]] = [
 
 LEVEL_KEYWORDS: list[tuple[str, LogLevel]] = [
     ("CRITICAL", LogLevel.CRITICAL),
-    ("FATAL",    LogLevel.CRITICAL),
-    ("ERROR",    LogLevel.ERROR),
-    ("ERR",      LogLevel.ERROR),
-    ("WARNING",  LogLevel.WARNING),
-    ("WARN",     LogLevel.WARNING),
-    ("INFO",     LogLevel.INFO),
-    ("DEBUG",    LogLevel.DEBUG),
-    ("TRACE",    LogLevel.DEBUG),
+    ("FATAL", LogLevel.CRITICAL),
+    ("ERROR", LogLevel.ERROR),
+    ("ERR", LogLevel.ERROR),
+    ("WARNING", LogLevel.WARNING),
+    ("WARN", LogLevel.WARNING),
+    ("INFO", LogLevel.INFO),
+    ("DEBUG", LogLevel.DEBUG),
+    ("TRACE", LogLevel.DEBUG),
 ]
 
 SOURCE_PATTERN = re.compile(r"\[([^\]]{1,50})\]")
