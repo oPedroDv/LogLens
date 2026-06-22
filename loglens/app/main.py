@@ -1,8 +1,8 @@
 from fastapi import FastAPI
-from app.api.router import router
+from app.api.router import api_router
 
 app = FastAPI(title="LogLens")
-app.include_router(router)
+app.include_router(api_router)
 
 @app.get("/")
 def root():

@@ -1,9 +1,6 @@
 from fastapi import APIRouter
-from app.api.routes import upload  
+from app.api.routes import upload, analysis
 
-router = APIRouter()
-router.include_router(upload.router)
-
-@router.get("/health")
-def health_check():
-    return {"status": "OK"}
+api_router = APIRouter()
+api_router.include_router(upload.router)
+api_router.include_router(analysis.router)
